@@ -1,7 +1,18 @@
+# Import libraries
 import torch, pandas as pd
 from torch.utils.data import Dataset, DataLoader
 
 class CustomDataset(Dataset):
+    
+    """
+    
+    This class getsa data path and returns dataset to train a model.
+    
+    Parameter:
+    
+        data_path    - path to data, str.
+    
+    """
     
     def __init__(self, data_path):
         
