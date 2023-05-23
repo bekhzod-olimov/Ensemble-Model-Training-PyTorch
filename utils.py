@@ -5,6 +5,18 @@ from tqdm import tqdm
 from matplotlib import pyplot as plt
 
 class EarlyStopping:
+    
+    """
+    
+    This class gets several parameters and initializes Early Stopping callback.
+    
+    Parameters:
+    
+        metric_to_track     - a metric name to be tracked, str;
+        patience            - number of epochs to be waited until training is stopped, int;
+        threshold           - minimum value of improvement must be done to continue training, float.
+        
+    """
     def __init__(self, metric_to_track = "loss", patience = 5, threshold = 0):
 
         assert metric_to_track in ["loss", "acc"], "Kuzatadigan metric acc yoki loss bo'lishi kerak!"
