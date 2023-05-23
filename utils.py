@@ -1,8 +1,8 @@
-from matplotlib import pyplot as plt
-import torch, random, os
-import numpy as np
+# Import libraries
+import torch, random, os, numpy as np
 from torchvision import transforms as tfs
 from tqdm import tqdm
+from matplotlib import pyplot as plt
 
 class EarlyStopping:
     def __init__(self, metric_to_track = "loss", patience = 5, threshold = 0):
