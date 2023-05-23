@@ -19,12 +19,27 @@ class EarlyStopping:
     """
     def __init__(self, metric_to_track = "loss", patience = 5, threshold = 0):
 
+        # Assert that metric to track is either loss or accuracy
         assert metric_to_track in ["loss", "acc"], "Kuzatadigan metric acc yoki loss bo'lishi kerak!"
+        
+        # Get variables from initialized values
         self.metric_to_track, self.patience, self.threshold, self.counter, self.early_stop = metric_to_track, patience, threshold, 0, False
+        
+        # Set the best values in the beginning of training process
         self.best_value = torch.tensor(float("inf")) if metric_to_track == "loss" else torch.tensor(float("-inf"))
         self.di = {}; self.di[str(self.counter)] = False
         
     def __call__(self, current_value): 
+        
+        """
+        
+        This function gets a value of the metric being tracked and implements feed-forward of the Early Stopping.
+        
+        Parameter:
+        
+            current_value    - a value of the metric being tracked, float.
+        
+        """
         
         print(f"\n{self.metric_to_track} ni kuzatyapmiz!")
         
