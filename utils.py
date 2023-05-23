@@ -43,21 +43,28 @@ class EarlyStopping:
         
         print(f"\n{self.metric_to_track} ni kuzatyapmiz!")
         
+        # When loss is tracked
         if self.metric_to_track == "loss":
+            # Compare with the best value
             if current_value > (self.best_value + self.threshold): self.counter += 1
             else: self.best_value = current_value
                 
+        # When accuracy is tracked
         elif self.metric_to_track == "acc":
-            
+            # Compare with the best value
             if current_value < (self.best_value + self.threshold): self.counter += 1
             else: self.best_value = current_value
             
+        # Go through keys and value of the dictionary
         for counter, value in self.di.items():
+            # Verbose
             if int(counter) == self.counter and value == False and int(counter) != 0:
                 print(f"{self.metric_to_track} {counter} marta o'zgarmadi!")
         
+        # Change "printed" option to True and False for the current counter value and for the next counter value, respectively
         self.di[str(self.counter)] = True; self.di[str(self.counter + 1)] = False
                 
+        # Stop training if counter is equal to patience value
         if self.counter >= self.patience: 
             print(f"\n{self.metric_to_track} {self.patience} marta o'zgarmaganligi uchun train jarayoni yakunlanmoqda...")
             self.early_stop = True
