@@ -85,22 +85,30 @@ def visualize(ds, num_ims, row, cmap = None, cls_names = None):
     
     """
     
+    # Set figure for visualization
     plt.figure(figsize = (20, 10))
+    
+    # Set random integers list for visualization
     indekslar = [random.randint(0, len(ds) - 1) for _ in range(num_ims)]
+    
+    # Go through the random indices list
     for idx, indeks in enumerate(indekslar):
         
+        # Get an image and its corresponding label
         im, gt = ds[indeks]
+        
         # Start plot
         plt.subplot(row, num_ims // row, idx + 1)
-        if cmap:
-            plt.imshow(tensor_2_im(im), cmap='gray')
-        else:
-            plt.imshow(tensor_2_im(im))
-        plt.axis('off')
-        if cls_names is not None:
-            plt.title(f"GT -> {cls_names[str(gt)]}")
-        else:
-            plt.title(f"GT -> {gt}")
+        # Plot the image
+        if cmap: plt.imshow(tensor_2_im(im), cmap='gray')
+        else: plt.imshow(tensor_2_im(im))
+        
+        # Turn off axis
+        plt.axis("off")
+        
+        # Set the title
+        if cls_names is not None: plt.title(f"GT -> {cls_names[str(gt)]}")
+        else: plt.title(f"GT -> {gt}")
             
 def data_tekshirish(ds):
     
