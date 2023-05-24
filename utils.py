@@ -71,6 +71,20 @@ class EarlyStopping:
 
 def visualize(ds, num_ims, row, cmap = None, cls_names = None):
     
+    """
+    
+    This function gets several parameters and visualizes dataset images based on pre-defined number of images.
+    
+    Parameters:
+    
+        ds          - dataset with images, torch dataset object;
+        num_ims     - number of images to visualize, int;
+        row         - number of rows in the plot, int;
+        cmap        - colormap, str;
+        cls_names   - class names of the dataset, dict.
+    
+    """
+    
     plt.figure(figsize = (20, 10))
     indekslar = [random.randint(0, len(ds) - 1) for _ in range(num_ims)]
     for idx, indeks in enumerate(indekslar):
